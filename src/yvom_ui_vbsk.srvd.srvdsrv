@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for VBSK'
+define service YVOM_UI_VBSK {
+  expose YVOM_C_VBSK;
+}

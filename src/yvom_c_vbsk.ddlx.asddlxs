@@ -1,0 +1,71 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo:{
+    typeName: 'Group Type',
+    typeNamePlural: 'Group Types'
+    },
+    presentationVariant: [{
+        sortOrder: [{
+            by: 'GroupId',
+            direction: #DESC
+        }],
+        visualizations: [{
+            type: #AS_LINEITEM
+        }]
+    }]
+}
+annotate view YVOM_C_VBSK with
+{
+  @UI.facet: [{
+  /* Header Facets */  
+   purpose: #HEADER,
+    position: 10,
+    type: #DATAPOINT_REFERENCE,
+    targetQualifier: 'GroupId'
+    },
+     {
+    purpose: #HEADER,
+    position: 20,
+    type: #DATAPOINT_REFERENCE,
+    targetQualifier: 'GroupType'
+    },
+    /*Standard Facets*/
+    //Section 'General Information'
+    {
+    label: 'General Information',
+    id: 'GeneralInfo',
+    type: #COLLECTION,
+    position: 10
+    },
+    //field group 'General', which contains all the identification fields
+    {
+    label: 'General',
+    purpose: #STANDARD,
+    position: 10,
+    type: #IDENTIFICATION_REFERENCE,
+    parentId: 'GeneralInfo'
+    }
+   ]
+
+  @UI.lineItem: [{ position: 10,
+                   importance: #HIGH }]
+  @UI.dataPoint: { qualifier: 'GroupId', title: 'Group Id' }
+  @UI.fieldGroup: [{ qualifier: 'GroupId',
+                     position: 20
+                  }]
+  GroupId;
+  @UI.lineItem: [{ position: 20,
+                   importance: #HIGH}]
+  @UI.dataPoint: { qualifier: 'GroupType', title: 'Group Type' }
+  @UI.fieldGroup: [{ qualifier: 'GroupType',
+                     position: 20
+                  }]
+  GroupType;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 10 }]
+  CreatedBy;
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 20 }]
+  CreatedOn;
+
+}
