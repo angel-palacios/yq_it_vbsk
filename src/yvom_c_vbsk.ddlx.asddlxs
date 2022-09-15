@@ -2,7 +2,14 @@
 @UI:{
     headerInfo:{
     typeName: 'Group Type',
-    typeNamePlural: 'Group Types'
+    typeNamePlural: 'Group Types' //,
+/*    title: {
+            type: #STANDARD,
+            value: 'GroupId'
+        },
+        description: {
+            type: #STANDARD,
+            value: 'GroupType' }   */
     },
     presentationVariant: [{
         sortOrder: [{
@@ -16,19 +23,20 @@
 }
 annotate view YVOM_C_VBSK with
 {
-  @UI.facet: [{
-  /* Header Facets */  
-   purpose: #HEADER,
+  @UI.facet: [
+    /* Header Facets */
+    {
+    purpose: #HEADER,
     position: 10,
     type: #DATAPOINT_REFERENCE,
     targetQualifier: 'GroupId'
     },
-     {
-    purpose: #HEADER,
-    position: 20,
-    type: #DATAPOINT_REFERENCE,
-    targetQualifier: 'GroupType'
-    },
+  /*    {
+      purpose: #HEADER,
+      position: 20,
+      type: #DATAPOINT_REFERENCE,
+      targetQualifier: 'GroupType'
+      }, */
     /*Standard Facets*/
     //Section 'General Information'
     {
@@ -44,9 +52,25 @@ annotate view YVOM_C_VBSK with
     position: 10,
     type: #IDENTIFICATION_REFERENCE,
     parentId: 'GeneralInfo'
+    },
+    //Section 'General Information'
+    {
+    label: 'Other Information',
+    id: 'OtherInfo',
+    type: #COLLECTION,
+    position: 20
+    },
+    {
+    label: 'Control',
+    purpose: #STANDARD,
+    position: 20,
+    type: #FIELDGROUP_REFERENCE,
+    parentId: 'OtherInfo',
+    targetQualifier: 'ControlGroup'
     }
    ]
 
+  @UI.selectionField: [{ position: 10 }]
   @UI.lineItem: [{ position: 10,
                    importance: #HIGH }]
   @UI.dataPoint: { qualifier: 'GroupId', title: 'Group Id' }
@@ -56,16 +80,22 @@ annotate view YVOM_C_VBSK with
   GroupId;
   @UI.lineItem: [{ position: 20,
                    importance: #HIGH}]
-  @UI.dataPoint: { qualifier: 'GroupType', title: 'Group Type' }
-  @UI.fieldGroup: [{ qualifier: 'GroupType',
-                     position: 20
-                  }]
+  /*  @UI.dataPoint: { qualifier: 'GroupType', title: 'Group Type' }
+    @UI.fieldGroup: [{ qualifier: 'GroupType',
+                       position: 20
+                    }] */
+  @UI.identification: [{ position: 10 }]
   GroupType;
   @UI.lineItem: [{ position: 30 }]
-  @UI.identification: [{ position: 10 }]
+  @UI.fieldGroup: [{ qualifier: 'ControlGroup',
+                     position: 10
+                  }]
+  @UI.selectionField: [{ position: 20 }]
   CreatedBy;
   @UI.lineItem: [{ position: 40 }]
-  @UI.identification: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'ControlGroup',
+                     position: 20
+                  }]
   CreatedOn;
 
 }

@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS yvom_cl_vbsk_pop IMPLEMENTATION.
+CLASS YVOM_CL_VBSK_POP IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DATA: it_vbsk TYPE STANDARD TABLE OF yvbsk,
           st_vbsk TYPE yvbsk.
@@ -48,5 +50,4 @@ CLASS yvom_cl_vbsk_pop IMPLEMENTATION.
       out->write( 'Table could not be updated' ).
     ENDIF.
   ENDMETHOD.
-
 ENDCLASS.
